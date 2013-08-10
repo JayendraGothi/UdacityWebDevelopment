@@ -88,6 +88,7 @@ class User(db.Model):
 class SignUp(BaseHandler):
     ###SignUp page
     def render_front(self, **details):
+        
         self.render("signup-form.html", **details)
         
     def get(self):
@@ -139,14 +140,21 @@ class Welcome(BaseHandler):
                 self.write('Welcome %s'%(user.username))
             else:
                 self.render('signup-form.html')
+        else:
+                self.render('signup-form.html')
 
-
+class Logout(BaseHandler):
+        ###logout page clears cookies and send user to signup page
+        def get(self):
+                #Clear Cookies
+                self.response.headers.add_header('Set-Cookie', 'user_id=; Path=/')
+                self.redirect('/signup')
 
 class Login(BaseHandler):
     ###Login Class handles user login
     def get(self):
         ###when Login page is called with get Method this function is called and 
-            it Displays the login page
+        ###it Displays the login page
         self.render('login.html')
         
     def post(self):
@@ -171,5 +179,6 @@ application = webapp2.WSGIApplication([
     ('/signup', SignUp),
     ('/welcome', Welcome),
     ('/login', Login),
+    ('/logout', Logout),
 ], debug=True)
 
