@@ -1,0 +1,7 @@
+<form method="post" >
+		<label>Username</label>	<input type="text" name="username" /><label style = "color:red;">%(wrong_username)s</label><br>
+		<label>Password</label>	<input type="password" name="password" /><label style = "color:red;">%(wrong_password)s</label><br>
+		<label>Verify Password</label>	<input type="password" name="verify" /><label style = "color:red;">%(unmatch)s</label><br>
+		<label>Email (optional)</label>	<input type="text" name="email" /><label style = "color:red;">%(wrong_email)s</label><br>
+		<input type="submit" />
+	</form>
